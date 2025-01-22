@@ -1,0 +1,33 @@
+@import "pixel-retroui/dist/index.css";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.foreground {
+  background-color: #ffffff;
+  /* opacity: 0.8; */
+  background-image: linear-gradient(#515151 0.8px, transparent 0.8px),
+    linear-gradient(to right, #515151 0.8px, #ffffff 0.8px);
+  background-size: 16px 16px;
+}
+
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img:not([src]) {
+  opacity: 0;
+}
+
+.pokemon-list-container {
+  max-height: calc(100dvh - 477px);
+}
