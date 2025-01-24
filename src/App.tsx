@@ -1,6 +1,4 @@
 import { useEffect, useState } from "react";
-import { HelmetProvider } from "react-helmet-async";
-import { HelmetData } from "~/helmet/Helmet";
 import HomeScreen from "~/screens/HomeScreen";
 import { usePokedex, usePokedexActions } from "./stores/pokedexStore";
 import pokedexGenerator from "~/lib/pokedexGenerator";
@@ -21,16 +19,11 @@ export default function App() {
     }
   }, [pokedex, loadPokedex]);
 
-  return (
-    <HelmetProvider>
-      <HelmetData />
-      {isInit ? (
-        <HomeScreen />
-      ) : (
-        <div className="flex items-center justify-center h-screen text-white text-2xl">
-          Loading
-        </div>
-      )}
-    </HelmetProvider>
-  );
+  if (!isInit) {
+    <div className="flex items-center justify-center h-screen text-white text-2xl">
+      Loading
+    </div>;
+  }
+
+  return <HomeScreen />;
 }
