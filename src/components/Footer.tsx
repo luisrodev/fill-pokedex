@@ -1,6 +1,10 @@
 import { useState } from "react";
 import { Button, Popup } from "pixel-retroui";
 import constants from "~/constants";
+import {
+  useConfigurationActions,
+  useSoundOn,
+} from "~/stores/configurationStore";
 
 const usePopUp = () => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
@@ -14,12 +18,19 @@ const usePopUp = () => {
 
 export function Footer() {
   const { isOpen, toggle } = usePopUp();
+  const { toggleSound } = useConfigurationActions();
+  const isSoundEnabled = useSoundOn();
 
   return (
     <>
-      <Button className="px-2" onClick={toggle}>
-        About
-      </Button>
+      <div>
+        <Button className="px-2 text-xs" onClick={toggle}>
+          About
+        </Button>
+        <Button className="text-xs" onClick={toggleSound}>
+          {isSoundEnabled ? "Audio Off" : "Audio On"}
+        </Button>
+      </div>
 
       <Popup isOpen={isOpen} onClose={toggle}>
         <div className="flex text-sm flex-col items-center gap-4">

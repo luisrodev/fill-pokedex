@@ -1,5 +1,6 @@
 import { useState } from "react";
 import useSound from "use-sound";
+import { useSoundOn } from "~/stores/configurationStore";
 import { cn } from "~/utils/ui";
 
 type PokemonSpriteProps = {
@@ -9,12 +10,20 @@ type PokemonSpriteProps = {
 
 const SPRITE_SIZE = 144;
 
+const usePokemonCry = ({ pokemonCode }: { pokemonCode: number }) => {
+  const isSoundEnabled = useSoundOn();
+  const [play] = useSound(
+    `https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/${pokemonCode}.ogg`
+  );
+
+  if (isSoundEnabled) {
+    play();
+  }
+};
+
 export function PokemonSprite(props: PokemonSpriteProps) {
   const [jumped, setJumped] = useState(false);
-  const [play] = useSound(
-    `https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/${props.code}.ogg`
-  );
-  play();
+  usePokemonCry({ pokemonCode: props.code });
 
   return (
     <img
