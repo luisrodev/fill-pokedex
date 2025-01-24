@@ -19,7 +19,11 @@ export default function PokemonDetail(props: PokemonDetailProps) {
     pokemons?.filter((currentPokemon) => currentPokemon.owned).length || 0;
 
   const pokemonElement = props.pokemon ? (
-    <PokemonSprite key={props.pokemon.code} url={props.pokemon.spriteURL} />
+    <PokemonSprite
+      key={props.pokemon.code}
+      code={props.pokemon.code}
+      url={props.pokemon.spriteURL}
+    />
   ) : (
     <PokemonSpritePlaceholder />
   );
