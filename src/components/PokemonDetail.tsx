@@ -30,7 +30,7 @@ export default function PokemonDetail(props: PokemonDetailProps) {
 
   return (
     <>
-      <PokemonDetailHeader key={props.pokemon?.code} pokemon={props.pokemon!} />
+      <PokemonDetailHeader key={props.pokemon?.code} pokemon={props.pokemon} />
       <section className="flex items-center justify-center p-2 py-10 desktop:py-0">
         {pokemonElement}
       </section>

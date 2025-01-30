@@ -5,14 +5,14 @@ import { PokemonNameForm } from "~/components/PokemonNameForm";
 import { usePokedexActions, useSelectedPokedex } from "~/stores/pokedexStore";
 
 type PokemonDetailHeaderProps = {
-  pokemon: Pokemon;
+  pokemon: Pokemon | null;
 };
 
 export default function PokemonDetailHeader(props: PokemonDetailHeaderProps) {
   const { catchPokemon } = usePokedexActions();
   const selectedPokedex = useSelectedPokedex();
 
-  const pokemonName = props.pokemon.name;
+  const pokemonName = props.pokemon?.name;
 
   const [pokemonTitle, setPokemonTitle] = useState(() => {
     let title: string | null = "---";
@@ -25,11 +25,12 @@ export default function PokemonDetailHeader(props: PokemonDetailHeaderProps) {
 
   if (!selectedPokedex) return;
 
-  if (pokemonTitle === null) {
+  if (pokemonTitle === null && pokemonName) {
     return (
       <PokemonNameForm
         expectedPokemonName={pokemonName}
         onCorrect={() => {
+          if (!props.pokemon) return;
           catchPokemon(selectedPokedex, props.pokemon);
           setPokemonTitle(pokemonName);
         }}
