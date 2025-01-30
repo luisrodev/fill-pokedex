@@ -41,6 +41,9 @@ export function Footer() {
             </a>
           </span>
           <span>version: {constants.applicationVersion}</span>
+          <a className="underline" href={constants.repositoryUrl}>
+            Repository
+          </a>
           <Button className="text-xs" onClick={toggle}>
             Close
           </Button>
