@@ -12,3 +12,7 @@ This project uses data provided by [PokeAPI](https://pokeapi.co/), a free and op
 Special thanks to the developers and maintainers of PokeAPI for making this resource available!
 
 PokeAPI is not affiliated with, endorsed, or associated with Nintendo, Game Freak, or Creatures Inc. This project is developed solely for educational and practice purposes, with no commercial intent.
+
+## LICENSE
+
+MIT © [FillPokedex](https://fillpokedex.xyz)
