@@ -36,12 +36,18 @@ export function Footer() {
         <div className="flex text-sm flex-col items-center gap-4">
           <span>
             Developed by{" "}
-            <a className="underline" href={constants.developerByUrl}>
+            <a
+              className="underline plausible-event-name=developedby-link-click"
+              href={constants.developerByUrl}
+            >
               {constants.developedBy}
             </a>
           </span>
           <span>version: {constants.applicationVersion}</span>
-          <a className="underline" href={constants.repositoryUrl}>
+          <a
+            className="underline plausible-event-name=repository-link-click"
+            href={constants.repositoryUrl}
+          >
             Repository
           </a>
           <Button className="text-xs" onClick={toggle}>
