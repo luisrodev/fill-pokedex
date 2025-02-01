@@ -7,7 +7,23 @@ import pkg from "./package.json";
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [react(), vanillaExtractPlugin()],
+  plugins: [
+    react(),
+    vanillaExtractPlugin(),
+    {
+      name: "html-transform",
+      transformIndexHtml(html) {
+        if (process.env.NODE_ENV === "production") {
+          return html.replace(
+            "</head>",
+            `<script defer data-domain="fillpokedex.xyz" src="/js/script.tagged-events.js"></script>
+             </head>`
+          );
+        }
+        return html;
+      },
+    },
+  ],
   define: {
     __APP_VERSION__: JSON.stringify(pkg.version),
   },
