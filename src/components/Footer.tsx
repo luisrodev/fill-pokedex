@@ -37,16 +37,30 @@ export function Footer() {
           <span>
             Developed by{" "}
             <a
-              className="underline plausible-event-name=developedby-link-click"
+              className="underline"
               href={constants.developerByUrl}
+              onClick={() => {
+                if (window.plausible) {
+                  window.plausible("developedby_click", {
+                    props: { anchor_name: "developedby_button" },
+                  });
+                }
+              }}
             >
               {constants.developedBy}
             </a>
           </span>
           <span>version: {constants.applicationVersion}</span>
           <a
-            className="underline plausible-event-name=repository-link-click"
+            className="underline"
             href={constants.repositoryUrl}
+            onClick={() => {
+              if (window.plausible) {
+                window.plausible("repository_click", {
+                  props: { anchor_name: "repository_button" },
+                });
+              }
+            }}
           >
             Repository
           </a>
