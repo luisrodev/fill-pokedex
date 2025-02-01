@@ -3,6 +3,10 @@
     {
       "source": "/js/script.tagged-events.js",
       "destination": "https://plausible.luisro.dev/js/script.tagged-events.js"
+    },
+    {
+      "source": "/api/event",
+      "destination": "https://plausible.luisro.dev/api/event"
     }
   ]
 }
