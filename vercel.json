@@ -1,8 +1,8 @@
 {
   "rewrites": [
     {
-      "source": "/js/script.tagged-events.js",
-      "destination": "https://plausible.luisro.dev/js/script.tagged-events.js"
+      "source": "/js/script.outbound-links.tagged-events.js",
+      "destination": "https://plausible.luisro.dev/js/script.outbound-links.tagged-events.js"
     },
     {
       "source": "/api/event",
