@@ -16,7 +16,7 @@ export default defineConfig({
         if (process.env.NODE_ENV === "production") {
           return html.replace(
             "</head>",
-            `<script defer data-domain="fillpokedex.xyz" src="/js/script.tagged-events.js"></script>
+            `<script defer data-domain="fillpokedex.xyz" src="/js/script.outbound-links.tagged-events.js"></script>
              </head>`
           );
         }
