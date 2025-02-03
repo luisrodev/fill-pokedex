@@ -1,5 +1,6 @@
 import { create, StateCreator } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
+import analytics from "~/lib/analytics";
 import type { Generation, Pokedex, Pokemon } from "~/types";
 
 type PokedexStoreActions = {
@@ -78,6 +79,15 @@ const store: StateCreator<PokedexStore> = (set, get): PokedexStore => ({
           currentIndex >= 0 && currentIndex + 1 < updatedPokemons.length
             ? updatedPokemons[currentIndex + 1]
             : pokemon;
+
+        const allPokemonCatched = updatedPokemons.every((p) => p.owned);
+
+        if (allPokemonCatched) {
+          analytics.sendEvent("catched_pokemons_from_generation", {
+            generation: generation,
+            last_catched_pokemon: nextPokemon.name,
+          });
+        }
 
         return {
           pokedex: state.pokedex.map((currentPokededx) =>
