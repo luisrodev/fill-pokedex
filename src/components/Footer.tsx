@@ -5,6 +5,7 @@ import {
   useConfigurationActions,
   useSoundOn,
 } from "~/stores/configurationStore";
+import analytics from "~/lib/analytics";
 
 const usePopUp = () => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
@@ -40,11 +41,9 @@ export function Footer() {
               className="underline"
               href={constants.developerByUrl}
               onClick={() => {
-                if (window.plausible) {
-                  window.plausible("developedby_click", {
-                    props: { anchor_name: "developedby_button" },
-                  });
-                }
+                analytics.sendEvent("developedby_click", {
+                  anchor_name: "developedby_button",
+                });
               }}
             >
               {constants.developedBy}
@@ -55,11 +54,9 @@ export function Footer() {
             className="underline"
             href={constants.repositoryUrl}
             onClick={() => {
-              if (window.plausible) {
-                window.plausible("repository_click", {
-                  props: { anchor_name: "repository_button" },
-                });
-              }
+              analytics.sendEvent("repository_click", {
+                anchor_name: "repository_button",
+              });
             }}
           >
             Repository
