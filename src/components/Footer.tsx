@@ -41,7 +41,7 @@ export function Footer() {
               className="underline"
               href={constants.developerByUrl}
               onClick={() => {
-                analytics.sendEvent("developedby_click", {
+                analytics.sendEvent(analytics.events.DevelopedByClick, {
                   anchor_name: "developedby_button",
                 });
               }}
@@ -54,7 +54,7 @@ export function Footer() {
             className="underline"
             href={constants.repositoryUrl}
             onClick={() => {
-              analytics.sendEvent("repository_click", {
+              analytics.sendEvent(analytics.events.RepositoryClick, {
                 anchor_name: "repository_button",
               });
             }}
