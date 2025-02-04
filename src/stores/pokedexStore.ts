@@ -80,13 +80,31 @@ const store: StateCreator<PokedexStore> = (set, get): PokedexStore => ({
             ? updatedPokemons[currentIndex + 1]
             : pokemon;
 
-        const allPokemonCatched = updatedPokemons.every((p) => p.owned);
+        const allPokemonsCatchedFromCurrentPokedex = updatedPokemons.every(
+          (p) => p.owned
+        );
 
-        if (allPokemonCatched) {
-          analytics.sendEvent("catched_pokemons_from_generation", {
-            generation: generation,
+        if (allPokemonsCatchedFromCurrentPokedex) {
+          const eventProps = {
+            generation,
             last_catched_pokemon: nextPokemon.name,
-          });
+          };
+
+          analytics.sendEvent(
+            analytics.events.CatchedPokemonsFromGeneration,
+            eventProps
+          );
+
+          const allPokemonCatchedFromRestPokedex = state.pokedex
+            .filter((pokedex) => pokedex.generation !== generation)
+            .every((p) => p.pokemons.every((po) => po.owned));
+
+          if (allPokemonCatchedFromRestPokedex) {
+            analytics.sendEvent(
+              analytics.events.CatchedAllPokemonsFromAllGeneration,
+              eventProps
+            );
+          }
         }
 
         return {
